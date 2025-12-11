@@ -1,0 +1,93 @@
+.history-wrapper {
+  width: 92%;
+  margin: 30px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  transition: 0.3s ease-in-out;
+}
+
+.history-wrapper:hover {
+  transform: translateY(-3px);
+}
+
+.history-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.history-table thead {
+  background: #6786b4; 
+  color: white;
+}
+
+.history-table th {
+  padding: 14px 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.history-table td {
+  padding: 14px 10px;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Zebra effect */
+.history-table tr:nth-child(even) {
+  background-color: #f8f9ff;
+}
+
+/* Hover effect */
+.history-table tr {
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.history-table tr:hover {
+  background-color: #e8f0ff;
+  transform: scale(1.01);
+  cursor: pointer;
+}
+
+/* Amount color styling */
+.amount-income {
+  color: #16a34a; /* green */
+  font-weight: 700;
+}
+
+.amount-expense {
+  color: #dc2626; /* red */
+  font-weight: 700;
+}
+
+.amount-loan {
+  color: #0d6efd; /* blue */
+  font-weight: 700;
+}
+.no-history{
+  text-align: center;
+  font-size: 40px;
+  color: rgb(95, 95, 155);
+}

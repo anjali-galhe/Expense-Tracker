@@ -1,0 +1,64 @@
+.loan-container {
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.loan-container h2 {
+  color: #333;
+  font-size: 26px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.loan-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.loan-form label {
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  color: #444;
+}
+
+.loan-form input,
+.loan-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.loan-form input:focus,
+.loan-form select:focus {
+  border-color: #4e73df;
+  box-shadow: 0 0 5px rgba(78, 115, 223, 0.4);
+}
+
+.loan-form button {
+  margin-top: 12px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: #4e73df;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.loan-form button:hover {
+  background: #3652c5;
+  transform: translateY(-2px);
+}
