@@ -40,10 +40,12 @@ const balance = totalIncome - totalExpense + totalLoan;
 
       <h2 className="section-title">Recent Transactions</h2>
       <ul className="transaction-list">
-        {transactions.map((t, index) => (
+       {transactions.map((t, index) => (
   <li key={index}>
     <span>{t.date}</span>
+
     <span>{t.category || t.type}</span>
+
     <span
       style={{
         color:
@@ -51,13 +53,16 @@ const balance = totalIncome - totalExpense + totalLoan;
             ? "#ff4e4e"
             : t.type === "Loan"
             ? "#3498db"
-            : "#2ecc71",
+            : t.type === "Payment"
+            ? "#7344e2ff"
+            : "#2ecc71", 
       }}
     >
       ₹{t.type === "Loan" ? t.loanAmount : t.amount}
     </span>
   </li>
 ))}
+
 
       </ul>
     </div>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ExpenseTracker from "./components/Transaction";
 import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
@@ -9,9 +11,18 @@ import Loan from "./components/loan";
 import History from "./components/history";
 import Login from "./Pages/Login";
 import Signup from "./Pages/signup";
+import Payment from "./components/payment";
 
 function App() {
 
+  const addPaymentTransaction = (payment) => {
+  setTransactions([...transactions, payment]);
+};
+
+  const [balance, setBalance] = useState(5000);
+  const makePayment = (amount) => {
+  setBalance(balance - amount);
+};
   const [transactions, setTransactions] = useState(() => {
     const saved = localStorage.getItem("transactions");
     return saved ? JSON.parse(saved) : [];
@@ -57,6 +68,17 @@ function App() {
             />
           }
         />
+        <Route
+          path="/payment"
+            element={
+         <Payment
+         balance={balance}
+      makePayment={makePayment}
+      addPaymentTransaction={addPaymentTransaction}
+    />
+  }
+/>
+
 
 <Route
           path="/settings"
@@ -77,6 +99,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
       </Routes>
+            <ToastContainer position="top-center" />
+
     </>
   );
 }
