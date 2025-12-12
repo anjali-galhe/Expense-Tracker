@@ -45,7 +45,9 @@ const Payment = ({ balance, makePayment, addPaymentTransaction }) => {
 
   return (
     <div className="payment-container">
-      <h2 className="payment-title">Send Money</h2>
+      <h2 className="payment-title">
+💸Bank Transfer
+💸</h2>
 
       <label className="payment-label">Name:</label>
       <input

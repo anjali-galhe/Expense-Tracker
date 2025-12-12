@@ -18,7 +18,7 @@ const Dashboard = ({ transactions }) => {
 const balance = totalIncome - totalExpense + totalLoan; 
   return (
     <div className="dashboard-container">
-      <h1>Dashboard</h1>
+      <h1>Dashboard📊📈</h1>
 
       <div className="summary-cards">
         <div className="card income">

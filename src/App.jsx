@@ -2,17 +2,16 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ExpenseTracker from "./components/Transaction";
-import Dashboard from "./components/Dashboard";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Settings from "./components/Setting";
-import Loan from "./components/loan";
-import History from "./components/history";
-import Login from "./Pages/Login";
-import Signup from "./Pages/signup";
-import Payment from "./components/payment";
-
+import ExpenseTracker from "../src/components/Transaction";
+import Dashboard from "../src/components/Dashboard";
+import Navbar from "../src/components/Navbar";
+import Home from "../src/components/Home";
+import Settings from "../src/components/Setting";
+import History from "../src/components/history";
+import Login from "../src/Pages/Login";
+import Signup from "../src/Pages/signup";
+import Payment from "../src/components/payment";
+import Loan from "../src/components/Loan";
 function App() {
 
   const addPaymentTransaction = (payment) => {

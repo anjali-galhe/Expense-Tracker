@@ -40,7 +40,7 @@ const Loan = ({ transactions, setTransactions }) => {
 
   return (
     <div className="loan-container">
-      <h2>Loan</h2>
+      <h2>Loan🏠</h2>
 
       <form onSubmit={handleSubmit} className="loan-form">
         <label>Loan Amount (₹)</label>

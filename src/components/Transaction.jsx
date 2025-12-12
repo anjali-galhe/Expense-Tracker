@@ -63,7 +63,7 @@ const ExpenseTracker = ({ transactions, setTransactions }) => {
 
   return (
     <div className="tracker">
-      <h2>MANAGE YOUR INCOME/EXPENSES</h2>
+      <h2>MANAGE YOUR INCOME/EXPENSES💰</h2>
 
       <form className="form" onSubmit={handleSubmit}>
         <label>Transaction type:</label>

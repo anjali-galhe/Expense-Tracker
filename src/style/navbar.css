@@ -11,14 +11,13 @@
   margin: 10px;
 }
 
-.logo h2 {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #00796b; 
+.logo{
+  height: 60px;          /* Adjust size */
+  width: auto;           /* Keeps original aspect ratio */
+  border-radius: 25px;    /* Slight rounded corners */
+  object-fit: cover;     /* Ensures good fit */
   cursor: pointer;
 }
-
 .nav-links {
   display: flex;
   gap: 18px;
