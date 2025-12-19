@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "../style/loan.css";
+import Navbar from "./Navbar";
+import  toast,{ Toaster } from 'react-hot-toast';
+
 
 const Loan = ({ transactions, setTransactions }) => {
   const [loanAmount, setLoanAmount] = useState("");
@@ -7,7 +10,6 @@ const Loan = ({ transactions, setTransactions }) => {
   const [interest, setInterest] = useState("");
   const [duration, setDuration] = useState("");
 
-  // Calculate payable amount (rounded)
   const rawTotal =
     loanAmount && interest && duration
       ? Number(loanAmount) +
@@ -34,11 +36,16 @@ const Loan = ({ transactions, setTransactions }) => {
     setInterest("");
     setDuration("");
     setDate("");
+  toast.success(`Total Payable Amount: ₹${totalPayable}`)
 
-    alert(`Total Payable Amount: ₹${totalPayable}`);
+   // alert(`T otal Payable Amount: ₹${totalPayable}`);
   };
-
   return (
+    <><Navbar/>
+    <Toaster
+      position="top-right"
+      reverseOrder={false}
+    />
     <div className="loan-container">
       <h2>Loan🏠</h2>
 
@@ -46,6 +53,7 @@ const Loan = ({ transactions, setTransactions }) => {
         <label>Loan Amount (₹)</label>
         <input
           type="number"
+          min={0}
           value={loanAmount}
           onChange={(e) => setLoanAmount(e.target.value)}
           required
@@ -54,6 +62,7 @@ const Loan = ({ transactions, setTransactions }) => {
         <label>Interest Rate (%)</label>
         <input
           type="number"
+          min={0}
           value={interest}
           onChange={(e) => setInterest(e.target.value)}
           required
@@ -62,6 +71,7 @@ const Loan = ({ transactions, setTransactions }) => {
         <label>Duration (Months)</label>
         <input
           type="number"
+          min={0}
           value={duration}
           onChange={(e) => setDuration(e.target.value)}
           required
@@ -84,7 +94,7 @@ const Loan = ({ transactions, setTransactions }) => {
 
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </div></>
   );
 };
 

@@ -1,10 +1,18 @@
 import React from "react";
 import "../style/history.css";
+import Navbar from "./Navbar";
 
 const History = ({ transactions }) => {
   return (
+        <><Navbar/>
+    
     <div className="history-wrapper">
       <h2 className="history-title"><u>History</u></h2>
+<input
+  type="text"
+  placeholder="Search by type or amount..."
+  onChange={(e) => setSearch(e.target.value)}
+/> <br />
 
       {transactions.length === 0 ? (
         <p className="no-history">No transaction available yet!!</p>
@@ -57,7 +65,7 @@ const History = ({ transactions }) => {
           </table>
         </div>
       )}
-    </div>
+    </div></>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/transaction.css";
+import Navbar from "./Navbar";
 
 
 const ExpenseTracker = ({ transactions, setTransactions }) => {
@@ -12,8 +13,7 @@ const ExpenseTracker = ({ transactions, setTransactions }) => {
   const [description, setDescription] = useState("");
 
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
+ const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!amount || !category || !paymentMethod || !date) {
@@ -62,6 +62,8 @@ const ExpenseTracker = ({ transactions, setTransactions }) => {
   const balance = totalIncome - totalExpense;
 
   return (
+        <><Navbar/>
+    
     <div className="tracker">
       <h2>MANAGE YOUR INCOME/EXPENSES💰</h2>
 
@@ -134,6 +136,7 @@ const ExpenseTracker = ({ transactions, setTransactions }) => {
             type="number"
             placeholder="Enter Amount.."
             name="amount"
+            min={0}
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             required
@@ -189,7 +192,7 @@ const ExpenseTracker = ({ transactions, setTransactions }) => {
 
         <button type="submit">Add Transaction</button>
       </form>
-    </div>
+    </div></>
   );
 };
 

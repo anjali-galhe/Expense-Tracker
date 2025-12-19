@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/dashboard.css";
+import Navbar from "./Navbar";
 
 
 const Dashboard = ({ transactions }) => {
@@ -17,6 +18,7 @@ const Dashboard = ({ transactions }) => {
 
 const balance = totalIncome - totalExpense + totalLoan; 
   return (
+    <><Navbar/>
     <div className="dashboard-container">
       <h1>Dashboard📊📈</h1>
 
@@ -65,7 +67,7 @@ const balance = totalIncome - totalExpense + totalLoan;
 
 
       </ul>
-    </div>
+    </div></>
   );
 };
 

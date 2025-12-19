@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "../style/payment.css";
+import Navbar from "./Navbar";
+import { Toaster } from 'react-hot-toast';
+
+
+
 const Payment = ({ balance, makePayment, addPaymentTransaction }) => {
   const [personName, setPersonName] = useState("");
   const [bankName, setBankName] = useState("");
@@ -12,11 +16,11 @@ const Payment = ({ balance, makePayment, addPaymentTransaction }) => {
   const handlePayment = () => {
     if (!personName || !bankName || !accountNumber || !ifscCode || !amount) {
       toast.error("Please fill all fields!");
+
       return;
     }
 
     if (Number(amount) > balance) {
-      toast.error("❌ Insufficient balance.");
       return;
     }
 
@@ -29,21 +33,32 @@ const Payment = ({ balance, makePayment, addPaymentTransaction }) => {
       bankName,
       accountNumber,
       ifscCode,
-      date: new Date().toLocaleDateString(),
+      date :new Date().toISOString().split("T")[0],
     };
 
     addPaymentTransaction(newPayment);
+// toast.success("✅ Payment Successful!");
 
-    toast.success("✅ Payment Successful!");
 
-    setPersonName("");
-    setBankName("");
-    setAccountNumber("");
-    setIfscCode("");
-    setAmount("");
+    toast.success('Successfully toasted!')
+
+
+    // setPersonName("");
+    // setBankName("");
+    // setAccountNumber("");
+    // setIfscCode("");
+    // setAmount("")
+
+  
   };
 
   return (
+    <><Navbar/>
+    <Toaster
+  position="top-right"
+  reverseOrder={false}
+/>
+
     <div className="payment-container">
       <h2 className="payment-title">
 💸Bank Transfer
@@ -85,6 +100,7 @@ const Payment = ({ balance, makePayment, addPaymentTransaction }) => {
       <input
         className="payment-input"
         type="number"
+        min={0}
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
       />
@@ -93,8 +109,8 @@ const Payment = ({ balance, makePayment, addPaymentTransaction }) => {
         Pay Now
       </button>
 
-      <ToastContainer position="top-center" />
-    </div>
+      {/* <ToastContainer position="top-center" /> */}
+    </div></>
   );
 };
 
