@@ -4,7 +4,7 @@ import "../style/transaction.css";
 import Navbar from "./Navbar";
 
 
-const ExpenseTracker = ({ transactions, setTransactions }) => {
+const ExpenseTracker = ({ transactions = [], setTransactions }) => {
   const [selectedOption, setSelectedOption] = useState("Expense");
   const [category, setCategory] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -21,11 +21,6 @@ const ExpenseTracker = ({ transactions, setTransactions }) => {
       return;
     }
 
-     if (selectedOption === "Expense" && Number(amount) > balance) {
-    alert("Balance is not sufficient!");
-    return;
-  }
-
     const newTransaction = {
       id: Date.now(),
       type: selectedOption,
@@ -35,8 +30,14 @@ const ExpenseTracker = ({ transactions, setTransactions }) => {
       paymentMethod,
       description,
     };
+     if (selectedOption === "Expense" && Number(amount) > balance) {
+    alert("Balance is not sufficient!");
+    return;
+  }
 
-    setTransactions([...transactions, newTransaction]); 
+    
+
+setTransactions(prev => [...prev, newTransaction]);
 
     setCategory("");
     setPaymentMethod("");

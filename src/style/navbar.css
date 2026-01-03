@@ -11,12 +11,17 @@
   margin: 10px;
 }
 
-.logo{
-  height: 60px;          /* Adjust size */
-  width: auto;           /* Keeps original aspect ratio */
-  border-radius: 25px;    /* Slight rounded corners */
-  object-fit: cover;     /* Ensures good fit */
-  cursor: pointer;
+.profile-initial {
+  width: 50px;
+  height: 50px;
+  background-color: #397294; /* Any color you like */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight:inherit;
+  text-decoration:dotted;
 }
 .nav-links {
   display: flex;

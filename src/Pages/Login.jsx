@@ -9,23 +9,34 @@ const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+  // always get array
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if (!storedUser) {
-      setError("No account found. Please sign up first.");
-      return;
-    }
+  if (users.length === 0) {
+    setError("No account found. Please sign up first.");
+    return;
+  }
 
-    if (storedUser.email === email && storedUser.password === password) {
-      localStorage.setItem("isLoggedIn", "true");
-      setIsLoggedIn(true);
-      navigate("/home");
-    } else {
-      setError("Invalid email or password!");
-    }
-  };
+  // find matching user
+  const currentUser = users.find(
+    (user) => user.email === email && user.password === password
+  );
+
+  if (!currentUser) {
+    setError("Invalid email or password!");
+    return;
+  }
+
+  // login success
+  localStorage.setItem("isLoggedIn", "true");
+  localStorage.setItem("currentUserId", currentUser.id);
+
+  setIsLoggedIn(true);
+  navigate("/home");
+};
+
 
   return (
     <div className="auth-container">

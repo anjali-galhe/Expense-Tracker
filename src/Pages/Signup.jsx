@@ -21,14 +21,17 @@ const Signup = () => {
       return;
     }
 
-    const existingUser = JSON.parse(localStorage.getItem("user"));
-    if (existingUser && existingUser.email === email) {
-      setError("User already exists! Please login.");
+const users = JSON.parse(localStorage.getItem("users")) || [];
+    const existingUsers = users.find((u) => u.email === email);
+
+if(existingUsers){
+     setError("User already exists! Please login.");
       return;
     }
 
-    const newUser = { email, password };
-    localStorage.setItem("user", JSON.stringify(newUser));
+    const newUser = {id : Date.now(), email, password,balance:0,transactions:[] };
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
 
     setSuccess("Signup successful! Redirecting to login...");
     setTimeout(() => navigate("/"), 1200);

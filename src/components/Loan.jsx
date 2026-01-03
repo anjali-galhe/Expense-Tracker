@@ -1,42 +1,85 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/loan.css";
 import Navbar from "./Navbar";
 import  toast,{ Toaster } from 'react-hot-toast';
 
 
-const Loan = ({ transactions, setTransactions }) => {
+const Loan = ({transactions =[], setTransactions}) => {
+  // const loanTransactions = transactions.filter(
+  //   (t) => t.type === "Loan"
+  // );
+  const loanTransactions = transactions.filter((t) => t.type === "Loan");
+
+  
+
   const [loanAmount, setLoanAmount] = useState("");
   const [date, setDate] = useState("");
   const [interest, setInterest] = useState("");
   const [duration, setDuration] = useState("");
+  const [emi, setEmi] = useState(0);
 
-  const rawTotal =
-    loanAmount && interest && duration
-      ? Number(loanAmount) +
-        (Number(loanAmount) * Number(interest) / 100) * Number(duration)
-      : 0;
 
-  const totalPayable = Math.round(rawTotal);
+useEffect(() => {
+ const P = Number(loanAmount);
+  const R = Number(interest) / 12 / 100;
+  const N = Number(duration);
+  if (P > 0 && R > 0 && N > 0) {
+    const emiValue =
+      (P * R * Math.pow(1 + R, N)) /
+      (Math.pow(1 + R, N) - 1);
+
+    setEmi(Math.round(emiValue));
+  } else {
+    setEmi(0);
+  }
+}, [loanAmount, interest, duration]);
+ //useEffect(() => {
+  //Emi();
+//}, [loanAmount, interest, duration]);
+
+//  const loanTransactions = transactions.filter(
+//   (t) => t.type === "Loan"
+// );
+
+
+
+
+  // const rawTotal =
+  //   loanAmount && interest && duration
+  //     ? Number(loanAmount) +
+  //       (Number(loanAmount) * Number(interest) / 100) * Number(duration)
+  //     : 0;
+
+  // const totalPayable = Math.round(rawTotal);
+  const totalPayable = emi > 0 ? emi * Number(duration) : 0;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newLoan = {
+      id : Date.now(),
       type: "Loan",
-      loanAmount,
-      date,
-      interest,
-      duration,
-      totalPayable,
+      loanAmount : Number(loanAmount),
+      amount : Number(loanAmount),
+      date: date,
+      interest : Number(interest),
+      duration : Number(duration),
+      totalPayable: totalPayable,
+      emi : emi,
+      category : "Loan Disbursement"
     };
 
     setTransactions([...transactions, newLoan]);
 
+    //users[userIndex].transactions.push(newLoan);
+    //localStorage.setItem("users", JSON.stringify(users));
+    //setTransactions([...transactions, newLoan]);
+toast.success(`Loan Added! Monthly EMI: ₹${emi}`);
     setLoanAmount("");
     setInterest("");
     setDuration("");
     setDate("");
-  toast.success(`Total Payable Amount: ₹${totalPayable}`)
+    setEmi(0);
 
    // alert(`T otal Payable Amount: ₹${totalPayable}`);
   };
@@ -77,6 +120,15 @@ const Loan = ({ transactions, setTransactions }) => {
           required
         />
 
+        <label>EMI</label>
+        <input 
+        type="number"
+        min={0}
+        value={emi}
+        onChange={(e) => setEmi(e.target.value)}
+        readOnly></input>
+
+
         <label>Date</label>
         <input
           type="date"
@@ -94,7 +146,10 @@ const Loan = ({ transactions, setTransactions }) => {
 
         <button type="submit">Submit</button>
       </form>
-    </div></>
+      
+    </div>
+  
+</>
   );
 };
 

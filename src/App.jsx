@@ -2,114 +2,120 @@ import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ExpenseTracker from "../src/components/Transaction";
-import Dashboard from "../src/components/Dashboard";
-// import Navbar from "../src/components/Navbar";
-import Home from "../src/components/Home";
-//import Settings from "../src/components/Setting";
-import History from "../src/components/history";
-import Login from "../src/Pages/Login";
-import Signup from "../src/Pages/signup";
-import Payment from "../src/components/payment";
-import Loan from "../src/components/loan";
+
+import ExpenseTracker from "./components/Transaction";
+import Dashboard from "./components/Dashboard";
+import History from "./components/history";
+import Login from "./Pages/Login";
+import Signup from "./Pages/signup";
+import Payment from "./components/payment";
+import Loan from "./components/loan";
+import Home from "./components/Home";
+import Profile from "./components/profile";
+
 function App() {
-  const navigate =useNavigate();
-  const islogin = localStorage.getItem("isLoggedIn");
+  const navigate = useNavigate();
 
-
-
-
-  const addPaymentTransaction = (payment) => {
-  setTransactions([...transactions, payment]);
-};
-
-  const [balance, setBalance] = useState(5000);
-  const makePayment = (amount) => {
-  setBalance(balance - amount);
-};
-  const [transactions, setTransactions] = useState(() => {
-    const saved = localStorage.getItem("transactions");
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Login state
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn") === "true"
+  );
 
   useEffect(() => {
-    localStorage.setItem("transactions", JSON.stringify(transactions));
-    if(!islogin){
-    return navigate("/");
-
-
+    if (!isLoggedIn && window.location.pathname !== "/" && window.location.pathname !== "/signup") {
+      navigate("/");
     }
+  }, [isLoggedIn, navigate]);
+
+  // Transactions state
+  const [transactions, setTransactions] = useState(() => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
+    const currentUser = users.find((u) => u.id === currentUserId);
+    return currentUser ? currentUser.transactions || [] : [];
+    //const saved = localStorage.getItem("transactions");
+    //return saved ? JSON.parse(saved) : [];
+  });
+  useEffect(() => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
+    const updatedUsers = users.map((user) => {
+      if (user.id === currentUserId) {
+        return { ...user, transactions : transactions };
+
+      }
+      return user;
+    });
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+  }, [transactions]);
+  // Persist transactions
+  useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions]);
 
-   //const [incomeCategories, setIncomeCategories] = useState(["Salary", "Bonus"]);
-  //const [expenseCategories, setExpenseCategories] = useState(["Food", "Rent"]);
-  
+  // Calculate balance
+  const balance = transactions.reduce((total, t) => {
+    const amount = Number(t.amount) || 0;
+    const type = t.type?.toLowerCase();
+
+    if (type === "income") return total + amount;
+    if (type === "expense") return total - amount;
+    return total;
+  }, 0);
 
   return (
     <>
-    
-
       <Routes>
         <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-
+        <Route 
+  path="/profile" 
+  element={
+    <Profile 
+      transactions={transactions} 
+      balance={balance} 
+    />
+  } 
+/>
+        
+    <Route path="/home" element={<Home />} />
+    
+         
         <Route
           path="/add-transaction"
           element={
             <ExpenseTracker
               transactions={transactions}
               setTransactions={setTransactions}
+              balance={balance} // optional
             />
           }
         />
-  
+
         <Route
           path="/dashboard"
-          element={<Dashboard transactions={transactions} />}
+          element={<Dashboard transactions={transactions} balance={balance} />}
         />
 
         <Route
           path="/loan"
-          element={
-            <Loan
-              transactions={transactions}
-              setTransactions={setTransactions}
-            />
-          }
+          element={<Loan transactions={transactions} setTransactions={setTransactions} />}
         />
+
         <Route
           path="/payment"
-            element={
-         <Payment
-         balance={balance}
-      makePayment={makePayment}
-      addPaymentTransaction={addPaymentTransaction}
-    />
-  }
-/>
-
-{/*<Route
-          path="/settings"
           element={
-            <Settings
-              incomeCategories={incomeCategories}
-              setIncomeCategories={setIncomeCategories}
-              expenseCategories={expenseCategories}
-              setExpenseCategories={setExpenseCategories}
+            <Payment
+              transactions={transactions}
+              setTransactions={setTransactions}
+              balance={balance} // optional
             />
           }
-        />*/}
-        <Route
-          path="/history"
-          element={<History transactions={transactions} />}
         />
 
+        <Route path="/history" element={<History transactions={transactions} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/home" element={<Home />} />
       </Routes>
-            <ToastContainer position="top-center" />
-
+      <ToastContainer position="top-center" />
     </>
   );
 }

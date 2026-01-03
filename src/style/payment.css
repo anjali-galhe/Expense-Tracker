@@ -51,3 +51,41 @@
 .payment-btn:hover {
   background: #0056b3;
 }
+
+
+
+.emi-section{
+  background: #fdf2f2;
+  border : 1px solid #feb2b2;
+  padding:15px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+
+}
+.emi-card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,05);
+
+}
+
+.emi-info{
+  display: flex;
+  flex-direction: column;
+
+}
+.pay-emi-btn{
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.pay-emi-btn:hover{
+  background-color: #c53030;
+}

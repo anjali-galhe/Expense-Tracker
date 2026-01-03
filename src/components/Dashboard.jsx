@@ -3,20 +3,30 @@ import "../style/dashboard.css";
 import Navbar from "./Navbar";
 
 
-const Dashboard = ({ transactions }) => {
+const Dashboard = ({transactions,balance}) => {
+
+  //const users = JSON.parse(localStorage.getItem("users")) || [];
+  //const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
+
+ // const currentUser = users.find(u => u.id === currentUserId);
+  //const transactions = currentUser?.transactions || [];
+
+
   const totalIncome = transactions
     .filter((t) => t.type === "Income")
-    .reduce((acc, curr) => acc + curr.amount, 0);
+    .reduce((acc, curr) => acc + (Number(curr.amount) || 0), 0);
 
   const totalExpense = transactions
     .filter((t) => t.type === "Expense")
-    .reduce((acc, curr) => acc + curr.amount, 0);
-
+    .reduce((acc, curr) => acc + (Number(curr.amount) || 0), 0);
     const totalLoan = transactions
     .filter((t) => t.type === "Loan")
-    .reduce((acc, curr) => acc + Number(curr.loanAmount), 0);
+    .reduce((acc, curr) => acc + (Number(curr.loanAmount) || 0), 0);
 
-const balance = totalIncome - totalExpense + totalLoan; 
+const displayBalance = totalIncome - totalExpense + totalLoan; 
+
+
+
   return (
     <><Navbar/>
     <div className="dashboard-container">
@@ -32,17 +42,22 @@ const balance = totalIncome - totalExpense + totalLoan;
           <h3>Expense</h3>
           <p>₹{totalExpense}</p>
         </div>
+        <div className="card loan">
+          <h3>Loan</h3>
+          <p>₹{totalLoan}</p>
+        </div>
 
         <div className="card balance">
           <h3>Balance</h3>
-          <p>₹{balance}</p>
+          <p>₹{displayBalance}</p>
         </div>
       </div>
 
 
       <h2 className="section-title">Recent Transactions</h2>
       <ul className="transaction-list">
-       {transactions.map((t, index) => (
+        {transactions.length > 0 ? (
+       transactions.slice(-5).reverse().map((t, index) => (
   <li key={index}>
     <span>{t.date}</span>
 
@@ -63,11 +78,15 @@ const balance = totalIncome - totalExpense + totalLoan;
       ₹{t.type === "Loan" ? t.loanAmount : t.amount}
     </span>
   </li>
-))}
+))
+        ) : (
+          <p>No transactions available.</p>
+        )}
 
 
       </ul>
-    </div></>
+    </div>
+    </>
   );
 };
 
