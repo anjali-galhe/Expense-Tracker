@@ -7,7 +7,7 @@ import ExpenseTracker from "./components/Transaction";
 import Dashboard from "./components/Dashboard";
 import History from "./components/history";
 import Login from "./Pages/Login";
-import Signup from "./Pages/signup";
+import Signup from "./Pages/Signup";
 import Payment from "./components/payment";
 import Loan from "./components/loan";
 import Home from "./components/Home";
