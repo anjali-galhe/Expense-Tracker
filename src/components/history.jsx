@@ -27,13 +27,17 @@ const History = ( {transactions= []}) => {
 
     //particular logic
     const getParticulars = (item) => {
-    if(item.type === "Payment" ) return "Payment Made";
-    if(item.type === "Loan" ) return "Loan Taken";
-    if(item.type === "Income" ) return "Income Received";
-    if(item.type === "Expense" ) return "Expense Incurred";
-return item.type;
-    };
-
+  // Check category first for more detail
+  if (item.category === "Bank Transfer") return `Payment to ${item.personName}`;
+  if (item.category === "EMI Payment") return "EMI Paid";
+  
+  // Then check general types
+  if (item.type === "Loan") return "Loan Taken";
+  if (item.type === "Income") return "Income Received";
+  if (item.type === "Expense") return "Expense Incurred";
+  
+  return item.type;
+};
 
   return (
         <>
@@ -70,8 +74,8 @@ return item.type;
 
             <tbody>
               {transactions.map((item, index) => {
-                // const isAddition = item.type === "Income" || item.type === "Loan";
-                // const displayAmount = item.amount || item.loanAmount;
+                 //const isAddition = item.type === "Income" || item.type === "Loan";
+                 //const displayAmount = item.amount || item.loanAmount;
                 //const isCredit = item.type === "Income" || item.type === "Taken" || item.type === "Payment Received";
 
                 return (

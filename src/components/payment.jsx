@@ -45,7 +45,7 @@ const Payment = ({ balance, transactions, setTransactions }) => {
     const emiPayment = {
       id: Date.now(),
       loanId: loan.id, // Links this payment to the loan
-      type: "Expense",
+      type: "Payment",
       amount: loan.emi,
       category: "EMI Payment",
       description: `EMI for Loan: ${loan.category || 'Personal'}`,

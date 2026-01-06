@@ -5,13 +5,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 import ExpenseTracker from "./components/Transaction";
 import Dashboard from "./components/Dashboard";
-import History from "./components/history";
+import History from "./components/History";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
-import Payment from "./components/payment";
-import Loan from "./components/loan";
+import Payment from "./components/Payment";
+import Loan from "./components/Loan";
 import Home from "./components/Home";
-import Profile from "./components/profile";
+import Profile from "./components/Profile";
 
 function App() {
   const navigate = useNavigate();
