@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../style/loan.css";
+import "../style/Loan.css";
 import Navbar from "./Navbar";
 import  toast,{ Toaster } from 'react-hot-toast';
 

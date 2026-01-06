@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../style/transaction.css";
+import "../style/Transaction.css";
 import Navbar from "./Navbar";
 
 

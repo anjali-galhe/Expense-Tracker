@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../style/home.css";
+import "../style/Home.css";
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
-import "../style/profile.css"; // Ensure you create this CSS file
+import "../style/Profile.css"; // Ensure you create this CSS file
 
 const Profile = ({ transactions, balance }) => {
   // 1. Get User Info from LocalStorage

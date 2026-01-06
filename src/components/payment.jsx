@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "../style/payment.css";
+import "../style/Payment.css";
 import Navbar from "./Navbar";
 import { Toaster } from 'react-hot-toast';
 

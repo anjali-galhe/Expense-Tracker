@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/history.css";
+import "../style/History.css";
 import Navbar from "./Navbar";
 import html2pdf from "html2pdf.js";
 

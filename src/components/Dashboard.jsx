@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/dashboard.css";
+import "../style/Dashboard.css";
 import Navbar from "./Navbar";
 
 
