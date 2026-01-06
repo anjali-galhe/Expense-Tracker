@@ -3,15 +3,15 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import ExpenseTracker from "./components/Transaction";
-import Dashboard from "./components/Dashboard";
-import History from "./components/History";
-import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
-import Payment from "./components/Payment";
-import Loan from "./components/Loan";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
+import ExpenseTracker from "../src/components/Transaction";
+import Dashboard from "../src/components/Dashboard";
+import History from "../src/components/History";
+import Login from "../src/Pages/Login";
+import Signup from "../src/Pages/Signup";
+import Payment from "../src/components/Payment";
+import Loan from "../src/components/Loan";
+import Home from "../src/components/Home";
+import Profile from "../src/components/Profile";
 
 function App() {
   const navigate = useNavigate();
