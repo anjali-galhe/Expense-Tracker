@@ -8,10 +8,14 @@ const Navbar = () => {
   const currentUser = users.find(u => u.id === currentUserId);
   const handlelogout=()=>{
 
+    
+
     //localStorage.removeItem("userInfo");
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("currentUser");
     navigate("/");
+
+    
 
   }
 

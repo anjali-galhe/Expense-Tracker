@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../style/Dashboard.css";
 import Navbar from "./Navbar";
 
 
 const Dashboard = ({transactions,balance}) => {
+  const [totalIncome, settotalIncome] = useState(0);
+  const [totalExpense, settotalExpense] = useState(0);
+    const [totalLoan, settotalLoan] = useState(0);
+    const [displayBalance , setdisplayBalance] = useState(0);
+
+  
 
   //const users = JSON.parse(localStorage.getItem("users")) || [];
   //const currentUserId = JSON.parse(localStorage.getItem("currentUserId"));
@@ -12,20 +18,38 @@ const Dashboard = ({transactions,balance}) => {
   //const transactions = currentUser?.transactions || [];
 
 
-  const totalIncome = transactions
-    .filter((t) => t.type === "Income")
-    .reduce((acc, curr) => acc + (Number(curr.amount) || 0), 0);
 
-  const totalExpense = transactions
-    .filter((t) => t.type === "Expense")
-    .reduce((acc, curr) => acc + (Number(curr.amount) || 0), 0);
-    const totalLoan = transactions
-    .filter((t) => t.type === "Loan")
-    .reduce((acc, curr) => acc + (Number(curr.loanAmount) || 0), 0);
+useEffect(() => {
+  if (!transactions || transactions.length === 0) {
+    settotalIncome(0);
+    settotalExpense(0);
+    settotalLoan(0);
+    setdisplayBalance(0);
+    return;
+  }
 
-const displayBalance = totalIncome - totalExpense + totalLoan; 
+  const income = transactions
+    .filter(t => t.type === "Income")
+    .reduce((acc, curr) => acc + Number(curr.amount || 0), 0);
 
+  const expense = transactions
+    .filter(t => t.type === "Expense")
+    .reduce((acc, curr) => acc + Number(curr.amount || 0), 0);
 
+  const loan = transactions
+    .filter(t => t.type === "Loan")
+    .reduce((acc, curr) => acc + Number(curr.loanAmount || 0), 0);
+
+  const balanceValue = income - expense + loan;
+
+  settotalIncome(income);
+  settotalExpense(expense);
+  settotalLoan(loan);
+  setdisplayBalance(balanceValue);
+
+  localStorage.setItem("userBalance", balanceValue);
+
+}, [transactions]);
 
   return (
     <><Navbar/>

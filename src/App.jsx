@@ -12,7 +12,6 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
-// =================================================================
 function App() {
   const navigate = useNavigate();
 
@@ -60,6 +59,7 @@ function App() {
 
     if (type === "income") return total + amount;
     if (type === "expense") return total - amount;
+    if(type === "loan") return total + amount;
     return total;
   }, 0);
 

@@ -1,56 +1,99 @@
+/* Matches your Navbar's Segoe UI font and Color Palette */
 .profile-container {
+  padding: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8fafc; /* Matches Navbar start color */
+  min-height: 90vh;
   display: flex;
   justify-content: center;
-  padding: 40px 20px;
-  background-color: #f4f7f6;
-  min-height: 90vh;
+  align-items: center;
 }
 
 .profile-card {
-  background: white;
+  background: linear-gradient(135deg, #ffffff, #e0f7fa); /* Matching Navbar Gradient */
+  width: 100%;
+  max-width: 450px;
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Matches Navbar Shadow */
   text-align: center;
+  border: 1px solid #d1e9ec;
 }
 
 .avatar {
   width: 80px;
   height: 80px;
-  background: #3498db;
+  background-color: #397294; /* Exactly matching your .profile-initial */
   color: white;
-  font-size: 2rem;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
   margin: 0 auto 15px;
+  font-size: 28px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(57, 114, 148, 0.3);
 }
 
+.email {
+  color: #00796b; /* Matching your Nav Link color */
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* Stats Styling */
 .profile-stats {
-  margin-top: 20px;
-  text-align: left;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.balance-text {
+  font-size: 32px;
+  color: #333;
+  font-weight: bold;
+  margin: 5px 0;
 }
 
 .stat-row {
   display: flex;
-  justify-content: space-between;
-  margin: 15px 0;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-.balance-text { color: #2ecc71; font-size: 1.8rem; }
-.income-amt { color: #2ecc71; font-weight: bold; }
-.expense-amt { color: #e74c3c; font-weight: bold; }
-
-.logout-btn {
-  margin-top: 25px;
-  width: 100%;
+.stat-box {
+  flex: 1;
+  background: white;
   padding: 10px;
-  background: #e74c3c;
+  border-radius: 8px;
+  border-bottom: 3px solid #00796b; /* Accent line */
+}
+
+.income-amt {
+  color: #2e7d32; /* Deep green */
+  font-weight: bold;
+}
+
+.expense-amt {
+  color: #c62828; /* Deep red */
+  font-weight: bold;
+}
+
+/* Logout Button - Matching your .lbtn class */
+.logout-btn {
+  background-color: #42aeb6; /* Matching your .lbtn */
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 12px 24px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #00796b; /* Darker teal on hover */
+  transform: translateY(-2px);
 }

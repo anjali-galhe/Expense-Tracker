@@ -5,11 +5,13 @@ const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 const Home = () => {
   return (
+    
     <div className="home-container">
-      <h1>Welcome to Expense Tracker</h1>
-      <p>Track your income & expenses easily and manage your finances smartly.</p>
-
+  <h1>Take Control of <span>Your Finances</span></h1>
+  <p>Track loans, manage EMIs, and visualize your wealth in one simple dashboard.</p>
       <div className="home-buttons">
+        {/* <button className="primary-btn">Get Started</button> */}
+    {/* <button className="secondary-btn">Learn More</button> */}
         <Link to="/add-transaction">
           <button>Add Transaction</button>
         </Link>
@@ -20,10 +22,11 @@ const Home = () => {
       </div>
 
       <ul className="features">
-        <li>✔ Track all your expenses & income</li>
-        <li>✔ View summary data and reports</li>
-        <li>✔ Simple & powerful financial dashboard</li>
-      </ul>
+        <li>Instant Loan Tracking</li>
+    <li>EMI Reminders</li>
+    <li>Interactive Charts</li>
+    <li>Secure Profiles</li>
+    </ul>
     </div>
   );
 };

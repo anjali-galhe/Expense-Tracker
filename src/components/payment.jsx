@@ -38,6 +38,7 @@ const Payment = ({ balance, transactions, setTransactions }) => {
   // 3. Handle EMI Payment
   const handleEmiPay = (loan) => {
     if (loan.emi > balance) {
+      console.log(balance, loan.emi);
       toast.error("Insufficient balance to pay EMI!");
       return;
     }
@@ -56,7 +57,6 @@ const Payment = ({ balance, transactions, setTransactions }) => {
     toast.success(`EMI of ₹${loan.emi} paid successfully!`);
   };
 
-  // ... (rest of your existing handlePayment logic)
 
   const handlePayment = () => {
     if (!personName || !bankName || !accountNumber || !ifscCode || !amount) {
